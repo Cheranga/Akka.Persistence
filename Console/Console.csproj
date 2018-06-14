@@ -75,16 +75,22 @@
     <Compile Include="Actors\PlayerActor.cs" />
     <Compile Include="Actors\PlayerCoordinatorActor.cs" />
     <Compile Include="DisplayHelper.cs" />
-    <Compile Include="Messages\CauseErrorMessage.cs" />
-    <Compile Include="Messages\CreatePlayerMessage.cs" />
-    <Compile Include="Messages\DisplayStatusMessage.cs" />
-    <Compile Include="Messages\HitMessage.cs" />
+    <Compile Include="Commands\CauseErrorCommand.cs" />
+    <Compile Include="Commands\CreatePlayerCommand.cs" />
+    <Compile Include="Commands\DisplayStatusCommand.cs" />
+    <Compile Include="Commands\HitMessage.cs" />
+    <Compile Include="Events\PlayerCreatedEvent.cs" />
+    <Compile Include="Events\PlayerGotHitEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Snapshots\PlayerSnapShot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Messages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

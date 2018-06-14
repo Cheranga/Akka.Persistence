@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Akka.Actor;
+﻿using Akka.Actor;
 using Console.Actors;
-using Console.Messages;
+using Console.Commands;
 
 namespace Console
 {
-    class Program
+    internal class Program
     {
         private static ActorSystem _actorSystem;
         private static IActorRef _playerCoordinatorRef;
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             _actorSystem = ActorSystem.Create("GamePlan");
             _playerCoordinatorRef = _actorSystem.ActorOf(Props.Create(() => new PlayerCoordinatorActor()), "PlayerCoordinator");
@@ -51,23 +44,22 @@ namespace Console
 
         private static void CreatePlayerCommand(string playerName)
         {
-            _playerCoordinatorRef.Tell(new CreatePlayerMessage(playerName));
+            _playerCoordinatorRef.Tell(new CreatePlayerCommand(playerName));
         }
 
         private static void HitPlayerCommand(string playerName, int damage)
         {
-            _actorSystem.ActorSelection($"/user/PlayerCoordinator/{playerName}").Tell(new HitMessage(damage));
+            _actorSystem.ActorSelection($"/user/PlayerCoordinator/{playerName}").Tell(new HitPlayerCommand(damage));
         }
 
         private static void DisplayStatusCommand(string playerName)
         {
-            _actorSystem.ActorSelection($"/user/PlayerCoordinator/{playerName}").Tell(new DisplayStatusMessage());
+            _actorSystem.ActorSelection($"/user/PlayerCoordinator/{playerName}").Tell(new DisplayStatusCommand());
         }
 
         private static void CauseErrorCommand(string playerName)
         {
-            _actorSystem.ActorSelection($"/user/PlayerCoordinator/{playerName}").Tell(new CauseErrorMessage());
+            _actorSystem.ActorSelection($"/user/PlayerCoordinator/{playerName}").Tell(new CauseErrorCommand());
         }
-
     }
 }

@@ -14,7 +14,7 @@ namespace Console
 
         public static void ShowInfo(string message)
         {
-            Show(message,ConsoleColor.Cyan);
+            Show(message, ConsoleColor.Cyan);
         }
 
         public static void ShowWarning(string message)
